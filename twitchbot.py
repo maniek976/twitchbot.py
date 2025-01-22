@@ -3,7 +3,6 @@ import random
 import pyautogui
 import time
 
-# Lista wiadomości
 messages_valorant = [
     "Nice shockdarts, Sova!",
     "Clean headshot!",
@@ -310,23 +309,19 @@ messages_cs2 = [
 ]
 
 
-# Funkcja do wysyłania wiadomości
 def send_message(min_time, max_time):
     global messages
-    message = random.choice(messages)  # Losowanie wiadomości
+    message = random.choice(messages)  
     
-    # Wysłanie wiadomości na czacie gry
-    pyautogui.typewrite(message)  # Wpisanie wiadomości
-    pyautogui.press('enter')  # Wysłanie wiadomości przez naciśnięcie Enter
+    pyautogui.typewrite(message)  
+    pyautogui.press('enter')  
     
-    # Wywołanie funkcji ponownie po losowym czasie w wybranym zakresie
-    next_time = random.randint(min_time, max_time) * 1000  # Czas w milisekundach
-    root.after(next_time, send_message, min_time, max_time)  # Wywołanie funkcji po upływie tego czasu
+    next_time = random.randint(min_time, max_time) * 1000  
+    root.after(next_time, send_message, min_time, max_time)  
 
-# Funkcja do wyboru trybu gry
 def choose_game_mode():
     global messages
-    game_choice = game_mode.get()  # Pobranie wybranego trybu
+    game_choice = game_mode.get()  
     if game_choice == "Valorant":
         messages = messages_valorant
         print("Valorant mode selected.")
@@ -337,7 +332,6 @@ def choose_game_mode():
         messages = messages_valorant
         print("Invalid selection, defaulting to Valorant.")
     
-    # Pobranie wartości interwałów
     try:
         min_time = int(min_time_entry.get())
         max_time = int(max_time_entry.get())
@@ -350,11 +344,9 @@ def choose_game_mode():
     
     send_message(min_time, max_time)
 
-# Ustawienia GUI
 root = tk.Tk()
 root.title("Message Sender")
 
-# Tekst powitalny
 welcome_text = """
 ████████╗██╗    ██╗██╗████████╗ ██████╗██╗  ██╗██████╗  ██████╗ ████████╗
 ╚══██╔══╝██║    ██║██║╚══██╔══╝██╔════╝██║  ██║██╔══██╗██╔═══██╗╚══██╔══╝
@@ -372,31 +364,27 @@ To change any settings pls restart program
 welcome_label = tk.Label(root, text=welcome_text, font=("Courier", 12), padx=10, pady=10)
 welcome_label.pack()
 
-# Dodanie opcji wyboru trybu gry
-game_mode = tk.StringVar(value="Valorant")  # Domyślnie ustawiony na Valorant
+game_mode = tk.StringVar(value="Valorant")  
 valorant_radio = tk.Radiobutton(root, text="Valorant", variable=game_mode, value="Valorant")
 cs2_radio = tk.Radiobutton(root, text="CS2", variable=game_mode, value="CS2")
 valorant_radio.pack()
 cs2_radio.pack()
 
-# Pola do wprowadzenia minimalnego i maksymalnego czasu
 min_time_label = tk.Label(root, text="Minimalny czas (sekundy):")
 min_time_label.pack()
 
 min_time_entry = tk.Entry(root)
-min_time_entry.insert(0, "15")  # Domyślna wartość
+min_time_entry.insert(0, "15")  
 min_time_entry.pack()
 
 max_time_label = tk.Label(root, text="Maksymalny czas (sekundy):")
 max_time_label.pack()
 
 max_time_entry = tk.Entry(root)
-max_time_entry.insert(0, "45")  # Domyślna wartość
+max_time_entry.insert(0, "45")  
 max_time_entry.pack()
 
-# Przycisk do rozpoczęcia wysyłania wiadomości
 start_button = tk.Button(root, text="Start Sending Messages", command=choose_game_mode)
 start_button.pack(pady=20)
 
-# Uruchomienie GUI
 root.mainloop()
