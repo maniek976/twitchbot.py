@@ -49,3 +49,7 @@ Wybór gry: Wpisz 1 dla Valoranta lub 2 dla CS2.
 Wybór interwałów czasowych: Bot zapyta o minimalny i maksymalny czas (w sekundach), jaki chcesz, aby upływał między wysyłaniem wiadomości (np. 15-45 sekund).
 5. Zatrzymanie bota:
 Aby zatrzymać bota, wystarczy zamknąć okno (w terminalu lub wierszu poleceń), które otworzyło się po uruchomieniu bota.
+
+
+
+BOT made by maniek976
